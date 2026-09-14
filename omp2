@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+OMP2_ROOT="${OMP2_SOURCE_DIR:-$HOME/.local/share/omp2/source}"
+CLI="$OMP2_ROOT/packages/coding-agent/src/cli.ts"
+
+if [[ ! -f "$CLI" ]]; then
+  echo "omp2: código local não encontrado em $OMP2_ROOT" >&2
+  echo "Execute ./install.sh neste repositório." >&2
+  exit 1
+fi
+
+exec bun "$CLI" "$@"
